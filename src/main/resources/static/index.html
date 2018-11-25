@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息</title>
+    <link href="css/mui.css" rel="stylesheet" />
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="gBody" class="mui-content">
+
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script>
+    $(function(){
+        $.ajax({
+            url: "http://202.194.67.116:8080/api/stu/YJS_XSJBSJXX",
+            type: "get",
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            timeout: 10000,
+            data: "",
+            dataType: "json",
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
+            success: function (data) {
+                let {
+                    XH,
+                    XM,
+                    XMPY,
+                    KSH,
+                    JG,
+                    CSRQ
+                } = data.value[0];
+                let gHtml = `
+                    <div class="mui-card">
+                        <!--页眉，放置标题-->
+                        <div class="mui-card-header">
+                            <img src="img/cloud.png" />
+                            <div class="mui-media-body">
+                                用户信息展示
+                                <p>来源于数据中心</p>
+                            </div>
+                        </div>
+                        <!--内容区-->
+                        <div class="mui-card-content">
+                            <ul class="mui-table-view">
+                                <li class="mui-table-view-cell">学号
+                                    <span class="mui-badge mui-badge-primary">${XH}</span>
+                                </li>
+                                <li class="mui-table-view-cell">姓名
+                                    <span class="mui-badge mui-badge-success">${XM}</span>
+                                </li>
+                                <li class="mui-table-view-cell">姓名拼音
+                                    <span class="mui-badge mui-badge-inverted" >${XMPY}</span>
+                                </li>
+                                <li class="mui-table-view-cell">考生号
+                                    <span class="mui-badge mui-badge-inverted">${KSH}</span>
+                                </li>
+                                <li class="mui-table-view-cell">籍贯
+                                    <span class="mui-badge mui-badge-inverted">${JG}</span>
+                                </li>
+                                <li class="mui-table-view-cell">出生日期
+                                    <span class="mui-badge mui-badge-inverted">${CSRQ}</span>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <!--页脚，放置补充信息或支持的操作-->
+                        <div class="mui-card-footer"></div>
+                    </div>
+                `;
+                document.getElementById("gBody").innerHTML = gHtml;
+                console.log(data);
+            },
+            error: function (xhr, textstatus, thrown) {
+                console.log("Get Fail!");
+            }
+        });
+    });
+</script>
+</body>
+</html>
