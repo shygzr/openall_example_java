@@ -3,19 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>用户信息</title>
-    <link href="css/mui.css" rel="stylesheet" />
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link href="css/mui.css" rel="stylesheet"/>
     <style>
-
     </style>
 </head>
 <body>
-<div id="gBody" class="mui-content">
+<div class="mui-content">
+    <div class="mui-card">
+        <!--页眉，放置标题-->
+        <div class="mui-card-header">
+            <img src="img/cloud.png"/>
+            <div class="mui-media-body">
+                用户信息展示
+                <p>来源于数据中心</p>
+            </div>
+        </div>
+        <!--内容区-->
+        <div class="mui-card-content">
+            <ul id="gBody" class="mui-table-view">
+                <li class="mui-table-view-cell">学号
+                    <span class="mui-badge mui-badge-primary"></span>
+                </li>
+                <li class="mui-table-view-cell">姓名
+                    <span class="mui-badge mui-badge-success"></span>
+                </li>
+                <li class="mui-table-view-cell">姓名拼音
+                    <span class="mui-badge mui-badge-inverted"></span>
+                </li>
+                <li class="mui-table-view-cell">考生号
+                    <span class="mui-badge mui-badge-inverted"></span>
+                </li>
+                <li class="mui-table-view-cell">籍贯
+                    <span class="mui-badge mui-badge-inverted"></span>
+                </li>
+                <li class="mui-table-view-cell">出生日期
+                    <span class="mui-badge mui-badge-inverted"></span>
+                </li>
 
+            </ul>
+        </div>
+        <!--页脚，放置补充信息或支持的操作-->
+        <div class="mui-card-footer"></div>
+    </div>
 </div>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 <script>
-    $(function(){
+    $(function () {
+
+
         $.ajax({
+
             url: "http://202.194.67.116:8081/api/stu/YJS_XSJBSJXX",
             type: "get",
             headers: {
@@ -38,42 +77,24 @@
                     CSRQ
                 } = data.value[0];
                 let gHtml = `
-                    <div class="mui-card">
-                        <!--页眉，放置标题-->
-                        <div class="mui-card-header">
-                            <img src="img/cloud.png" />
-                            <div class="mui-media-body">
-                                用户信息展示
-                                <p>来源于数据中心</p>
-                            </div>
-                        </div>
-                        <!--内容区-->
-                        <div class="mui-card-content">
-                            <ul class="mui-table-view">
-                                <li class="mui-table-view-cell">学号
-                                    <span class="mui-badge mui-badge-primary">${XH}</span>
-                                </li>
-                                <li class="mui-table-view-cell">姓名
-                                    <span class="mui-badge mui-badge-success">${XM}</span>
-                                </li>
-                                <li class="mui-table-view-cell">姓名拼音
-                                    <span class="mui-badge mui-badge-inverted" >${XMPY}</span>
-                                </li>
-                                <li class="mui-table-view-cell">考生号
-                                    <span class="mui-badge mui-badge-inverted">${KSH}</span>
-                                </li>
-                                <li class="mui-table-view-cell">籍贯
-                                    <span class="mui-badge mui-badge-inverted">${JG}</span>
-                                </li>
-                                <li class="mui-table-view-cell">出生日期
-                                    <span class="mui-badge mui-badge-inverted">${CSRQ}</span>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <!--页脚，放置补充信息或支持的操作-->
-                        <div class="mui-card-footer"></div>
-                    </div>
+                    <li class="mui-table-view-cell">学号
+                        <span class="mui-badge mui-badge-primary">${XH}</span>
+                    </li>
+                    <li class="mui-table-view-cell">姓名
+                        <span class="mui-badge mui-badge-success">${XM}</span>
+                    </li>
+                    <li class="mui-table-view-cell">姓名拼音
+                        <span class="mui-badge mui-badge-inverted">${XMPY}</span>
+                    </li>
+                    <li class="mui-table-view-cell">考生号
+                        <span class="mui-badge mui-badge-inverted">${KSH}</span>
+                    </li>
+                    <li class="mui-table-view-cell">籍贯
+                        <span class="mui-badge mui-badge-inverted">${JG}</span>
+                    </li>
+                    <li class="mui-table-view-cell">出生日期
+                        <span class="mui-badge mui-badge-inverted">${CSRQ}</span>
+                    </li>
                 `;
                 document.getElementById("gBody").innerHTML = gHtml;
                 console.log(data);
